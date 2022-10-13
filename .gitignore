@@ -29,6 +29,8 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+/menu-generator-365401-9cc627508d01.json
+
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
