@@ -17,7 +17,7 @@ gem "jbuilder"
 # gems added
 gem "redis", "~> 4.0"
 gem "sassc-rails"
-
+gem "google_drive"
 
 
 # Use Redis adapter to run Action Cable in production

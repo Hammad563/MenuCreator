@@ -1,0 +1,9 @@
+<p>Hello</p>
+
+<% 
+file_url = Rails.root.join("menu-generator-365401-9cc627508d01.json").to_s 
+session = GoogleDrive::Session.from_config(file_url)
+ws = session.spreadsheet_by_key("1KSGPcvIecxHkRnsdsEMYx5BI6ns83UM0Ky9oQ4gH1Lw").worksheets[0]
+%>
+
+<%= ws.rows %>
