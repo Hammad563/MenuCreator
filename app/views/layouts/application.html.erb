@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="<%= 'h-full bg-gray-100' if devise_controller? || user_signed_in? %>">
   <head>
     <title>MenuCreator</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -11,8 +11,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-      <%= render "layouts/header" %>
+  <body class="<%= 'h-full' if devise_controller? || user_signed_in? %>">
+      <% unless  devise_controller? %>
+        <%= render "layouts/header" %>
+      <% end %>
       <%= yield %>
   </body>
 </html>
