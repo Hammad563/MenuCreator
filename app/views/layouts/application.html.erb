@@ -12,7 +12,9 @@
   </head>
 
   <body class="<%= 'h-full' if devise_controller? || user_signed_in? %>">
-      <% unless  devise_controller? %>
+      <% if user_signed_in? %>
+        <%= render "layouts/dashboard_header" %>
+      <% elsif !devise_controller? %>
         <%= render "layouts/header" %>
       <% end %>
       <%= yield %>
