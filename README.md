@@ -1,24 +1,12 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby verison 2.7.5
+SaaS app to build menus using qr code gathering data from external sheets
+able to see QR code, sync changes and manage multiple menus and print QR codes
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
+stuff to do:
+payment subscription plan
+templates for users to use
 
 * ...
