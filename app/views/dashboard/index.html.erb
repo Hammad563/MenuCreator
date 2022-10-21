@@ -6,9 +6,52 @@
                 <p class="mt-2 text-sm text-gray-700">Your Menus</p>
             </div>
             <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-                <%= link_to "Add menu", "", class: "inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto" %>
+                <%= link_to "Add menu", new_menu_path, class: "inline-flex items-center justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto" %>
             </div>
         </div>
-
-    </div>
+            <div class="mt-8 flex flex-col">
+                <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                    <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                        <% if @menus.empty? %>
+                            <div class="pt-8">
+                            <p class="text-center text-4xl font-light">You have no menus.</p>
+                            <p class="text-center text-4xl font-light mt-8"></p>
+                            </div>
+                        <% else %>
+                        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+                            <table class="min-w-full divide-y divide-gray-300">
+                                <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Title</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Sheet ID</th>
+                                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"></th>
+                                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
+                                    <span class="sr-only">Edit</span>
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200 bg-white">
+                                <% @menus.each do |menu| %>
+                                    <tr>
+                                    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-6"><%= menu.title %></td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= menu.sheet_key %></td>
+                                    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                                        <%= link_to "View", menu_path(menu), target: :_blank, class: "text-blue-600 hover:text-blue-900" %>
+                                        <%= link_to "Print QR Code", qr_code_path(menu), target: :_blank, class: "ml-2 font-medium text-blue-600 hover:text-blue-900" %>
+                                    </td>
+                                    <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                                        <%= link_to "Edit", "", class: "text-blue-600 hover:text-blue-900" %>
+                                        <%= link_to "Sync", menu_path(menu), data: { "turbo-method": :put }, class: "ml-2 text-blue-600 hover:text-blue-900" %>
+                                        <%= link_to "Delete", menu_path(menu), data: { "turbo-method": :delete }, class: "ml-2 text-red-600 hover:text-red-900" %>
+                                    </td>
+                                    </tr>
+                                <% end %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
 </div>

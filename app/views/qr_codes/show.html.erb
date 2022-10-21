@@ -1,0 +1,42 @@
+<% qrcode = RQRCode::QRCode.new(menu_url(@menu)) %>
+
+<div class="max-w-6xl mx-auto pt-10 pb-12 px-4 lg:pb-16">
+  <div class="grid">
+    <h1 class="justify-self-center text-3xl tracking-wide font-medium mb-4">QR Code</h1>
+    <h2 class="justify-self-center text-xl tracking-wide font-medium mb-4"><%= link_to @menu.title, qr_menu_path(@menu), target: :_blank, class: "tracking-wide text-green-600 hover:underline hover:text-green-700" %></h2>
+
+    <% if ActiveModel::Type::Boolean.new.cast(params[:multiple]) %>
+      <%= link_to "View / Print single QR code", qr_code_path(@menu, multiple: false), class: "mb-12 tracking-wide justify-self-center text-green-600 hover:underline hover:text-green-700" %>
+
+      <div class="grid grid-cols-5">
+        <% 50.times do %>
+          <div class="mb-14">
+            <%=
+              qrcode.as_svg(
+                color: "000",
+                shape_rendering: "crispEdges",
+                module_size: 5,
+                standalone: true,
+                use_path: true
+              ).html_safe
+            %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <%= link_to "View / Print multiple QR codes", qr_code_path(@menu, multiple: true), class: "mb-12 tracking-wide justify-self-center text-green-600 hover:underline hover:text-green-700" %>
+
+      <div class="justify-self-center">
+        <%=
+          qrcode.as_svg(
+            color: "000",
+            shape_rendering: "crispEdges",
+            module_size: 10,
+            standalone: true,
+            use_path: true
+          ).html_safe
+        %>
+      </div>
+    <% end %>
+  </div>
+</div>

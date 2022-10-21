@@ -1,0 +1,30 @@
+<div class="max-w-6xl mx-auto pt-10 pb-12 px-4 lg:pb-16">
+  <h1 class="text-3xl font-semibold tracking-wider mb-6"><%= @menu.title %></h1>
+
+  <% @menu.menu_items.group_by(&:category).each do |category, items| %>
+    <div class="relative">
+      <div class="absolute inset-0 flex items-center" aria-hidden="true">
+        <div class="w-full border-t border-gray-300"></div>
+      </div>
+    </div>
+
+    <div class="pt-6">
+      <p class="text-2xl font-semibold tracking-wide mb-6"><%= category %></p>
+
+      <% items.each_with_index do |item, index| %>
+        <div class="sm:flex mb-16">
+          <% if item.image_url.present? %>
+            <div class="mb-4 flex-shrink-0 sm:mb-0 sm:mr-4">
+              <img src="<%= item.image_url %>" class="h-56 w-full sm:w-56 rounded-lg object-cover">
+            </div>
+          <% end %>
+
+          <div>
+            <p class="text-lg font-medium tracking-wide"><%= item.item_name %> - <%= item.price %></p>
+            <p class="mt-1 tracking-wide"><%= item.description %></p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
